@@ -1,0 +1,62 @@
+FILE CANONICALIZER v0.5 - TEST EVIDENCE
+Generated: 2026-06-10
+Runner: python -m unittest discover -s tests -v
+
+TEST OUTPUT
+-----------
+
+test_determinism_three_runs (test_canonicalizer.CanonicalizerTests.test_determinism_three_runs) ... ok
+test_fail_empty_file (test_canonicalizer.CanonicalizerTests.test_fail_empty_file) ... ok
+test_fail_unsupported_type (test_canonicalizer.CanonicalizerTests.test_fail_unsupported_type) ... ok
+test_pass_meeting (test_canonicalizer.CanonicalizerTests.test_pass_meeting) ... ok
+test_pass_report_prose_date_normalized (test_canonicalizer.CanonicalizerTests.test_pass_report_prose_date_normalized) ... ok
+test_pass_sop (test_canonicalizer.CanonicalizerTests.test_pass_sop) ... ok
+test_warn_ambiguous_type_blocks_extraction (test_canonicalizer.CanonicalizerTests.test_warn_ambiguous_type_blocks_extraction) ... ok
+test_warn_date_only_agenda_does_not_use_date_as_key_field (test_canonicalizer.CanonicalizerTests.test_warn_date_only_agenda_does_not_use_date_as_key_field) ... ok
+test_warn_missing_date_uses_today (test_canonicalizer.CanonicalizerTests.test_warn_missing_date_uses_today) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.004s
+
+OK
+
+SAMPLE OUTPUTS
+--------------
+PASS:
+{
+  "doc_id": "report_2026-03-15_Q1_2026_Quarterly",
+  "doc_type": "report",
+  "date": "2026-03-15",
+  "key_field": "Q1 2026 Quarterly",
+  "canonical_name": "report_2026-03-15_Q1_2026_Quarterly.docx",
+  "check_result": "PASS",
+  "source_hint": {
+    "doc_type": "Line 1: heading",
+    "date": "Line 2: date",
+    "key_field": "Line 1: heading"
+  },
+  "extraction_snippet": {
+    "doc_type": "Q1 2026 Quarterly Report",
+    "date": "Date: 15 March 2026",
+    "key_field": "Q1 2026 Quarterly Report"
+  }
+}
+
+WARN:
+{
+  "check_result": "WARN",
+  "failure_reason": "Ambiguous document type. Candidate types found in the heading: meeting, report. Reviewer must choose before extraction.",
+  "candidate_doc_types": [
+    "meeting",
+    "report"
+  ],
+  "source_hint": "Line 1: heading",
+  "reviewed_by": null,
+  "review_timestamp": null
+}
+
+FAIL:
+{
+  "check_result": "FAIL",
+  "failure_reason": "Detected type 'unknown' is not in the approved list: meeting, agenda, minutes, sop, checklist, report."
+}
