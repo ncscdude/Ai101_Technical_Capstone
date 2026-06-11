@@ -16,7 +16,7 @@ test_warn_date_only_agenda_does_not_use_date_as_key_field (test_canonicalizer.Ca
 test_warn_missing_date_uses_today (test_canonicalizer.CanonicalizerTests.test_warn_missing_date_uses_today) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.005s
+Ran 9 tests in 0.002s
 
 OK
 
