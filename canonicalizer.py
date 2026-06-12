@@ -26,9 +26,25 @@ DOC_TYPE_KEYWORDS = {
     "meeting": ("meeting",),
     "agenda": ("agenda",),
     "minutes": ("minutes",),
-    "sop": ("sop", "standard operating procedure", "standard operating", "procedure"),
+    # Operator mapping rule: system prompt and config files propagate to sop (ADR-03)
+    "sop": (
+        "sop",
+        "standard operating procedure",
+        "standard operating",
+        "procedure",
+        "system prompt",
+        "prompt version",
+        "schema version",
+        "core profile",
+    ),
     "checklist": ("checklist", "check list"),
     "report": ("report",),
+}
+
+# Priority overrides: if any keyword matches here, that doc_type wins unconditionally.
+# Prevents co-matches when a system prompt heading also contains incidental type words.
+PRIORITY_KEYWORDS: dict[str, tuple[str, ...]] = {
+    "sop": ("system prompt", "prompt version", "schema version", "core profile"),
 }
 
 MONTHS = {
@@ -173,6 +189,10 @@ def classify_doc_type(lines: list[str]) -> dict[str, Any]:
 
 def matched_doc_types(line: str) -> list[str]:
     lower = line.lower()
+    # Priority check: operator mapping rule wins unconditionally (ADR-03).
+    for doc_type, keywords in PRIORITY_KEYWORDS.items():
+        if any(keyword in lower for keyword in keywords):
+            return [doc_type]
     matches: list[str] = []
     for doc_type, keywords in DOC_TYPE_KEYWORDS.items():
         if any(keyword in lower for keyword in keywords):
