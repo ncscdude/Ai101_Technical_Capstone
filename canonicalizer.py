@@ -201,7 +201,7 @@ def matched_doc_types(line: str) -> list[str]:
 
 
 def extract_date(lines: list[str], today: date) -> ExtractedDate:
-    for index, line in enumerate(lines, start=1):
+    for index, line in enumerate(lines[:5], start=1):
         parsed = parse_date(line)
         if parsed:
             return ExtractedDate(parsed, f"Line {index}: date", line)
