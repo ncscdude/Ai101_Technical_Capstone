@@ -5,18 +5,58 @@ Runner: python -m unittest discover -s tests -v
 TEST OUTPUT
 -----------
 
-test_determinism_three_runs (test_canonicalizer.CanonicalizerTests.test_determinism_three_runs) ... ok
-test_fail_empty_file (test_canonicalizer.CanonicalizerTests.test_fail_empty_file) ... ok
-test_fail_unsupported_type (test_canonicalizer.CanonicalizerTests.test_fail_unsupported_type) ... ok
-test_pass_meeting (test_canonicalizer.CanonicalizerTests.test_pass_meeting) ... ok
-test_pass_report_prose_date_normalized (test_canonicalizer.CanonicalizerTests.test_pass_report_prose_date_normalized) ... ok
-test_pass_sop (test_canonicalizer.CanonicalizerTests.test_pass_sop) ... ok
-test_warn_ambiguous_type_blocks_extraction (test_canonicalizer.CanonicalizerTests.test_warn_ambiguous_type_blocks_extraction) ... ok
-test_warn_date_only_agenda_does_not_use_date_as_key_field (test_canonicalizer.CanonicalizerTests.test_warn_date_only_agenda_does_not_use_date_as_key_field) ... ok
-test_warn_missing_date_uses_today (test_canonicalizer.CanonicalizerTests.test_warn_missing_date_uses_today) ... ok
+test_abbreviated_month (test_canonicalizer.TestDateParsing.test_abbreviated_month) ... ok
+test_day_month_year (test_canonicalizer.TestDateParsing.test_day_month_year) ... ok
+test_iso_format (test_canonicalizer.TestDateParsing.test_iso_format) ... ok
+test_month_day_year (test_canonicalizer.TestDateParsing.test_month_day_year) ... ok
+test_no_date_returns_none (test_canonicalizer.TestDateParsing.test_no_date_returns_none) ... ok
+test_slash_format (test_canonicalizer.TestDateParsing.test_slash_format) ... ok
+test_fail_empty_input (test_canonicalizer.TestFail.test_fail_empty_input) ... ok
+test_fail_has_only_two_fields (test_canonicalizer.TestFail.test_fail_has_only_two_fields) ... ok
+test_fail_unapproved_doc_type (test_canonicalizer.TestFail.test_fail_unapproved_doc_type) ... ok
+test_fail_whitespace_only (test_canonicalizer.TestFail.test_fail_whitespace_only) ... ok
+test_blank_lines_do_not_inflate_header_zone (test_canonicalizer.TestHeaderZoneDateConstraint.test_blank_lines_do_not_inflate_header_zone)
+Blank lines are stripped before indexing. ... ok
+test_body_date_in_sop_system_prompt_does_not_become_document_date (test_canonicalizer.TestHeaderZoneDateConstraint.test_body_date_in_sop_system_prompt_does_not_become_document_date)
+Regression: meeting_v0_5_prompt.txt embeds '(2026-06-11)' in Section 2 body. ... ok
+test_date_on_line_5_is_accepted (test_canonicalizer.TestHeaderZoneDateConstraint.test_date_on_line_5_is_accepted) ... ok
+test_date_on_line_6_triggers_warn (test_canonicalizer.TestHeaderZoneDateConstraint.test_date_on_line_6_triggers_warn) ... ok
+test_canonical_name_format (test_canonicalizer.TestPass.test_canonical_name_format) ... ok
+test_checklist_pass (test_canonicalizer.TestPass.test_checklist_pass) ... ok
+test_meeting_with_slash_date (test_canonicalizer.TestPass.test_meeting_with_slash_date) ... ok
+test_minutes_pass (test_canonicalizer.TestPass.test_minutes_pass) ... ok
+test_report_with_iso_date_in_header (test_canonicalizer.TestPass.test_report_with_iso_date_in_header) ... ok
+test_sop_pass (test_canonicalizer.TestPass.test_sop_pass) ... ok
+test_priority_overrides_co_match_with_meeting (test_canonicalizer.TestPriorityClassification.test_priority_overrides_co_match_with_meeting)
+'System Prompt: ... Meetings/Ops' contains both 'system prompt' (→ sop priority) ... ok
+test_priority_overrides_co_match_with_report (test_canonicalizer.TestPriorityClassification.test_priority_overrides_co_match_with_report) ... ok
+test_prompt_version_header_maps_to_sop (test_canonicalizer.TestPriorityClassification.test_prompt_version_header_maps_to_sop) ... ok
+test_schema_version_header_maps_to_sop (test_canonicalizer.TestPriorityClassification.test_schema_version_header_maps_to_sop) ... ok
+test_system_prompt_heading_maps_to_sop (test_canonicalizer.TestPriorityClassification.test_system_prompt_heading_maps_to_sop) ... ok
+test_ambiguous_meeting_report_returns_warn (test_canonicalizer.TestSlicePlanAlignment.test_ambiguous_meeting_report_returns_warn) ... ok
+test_ambiguous_warn_failure_reason_mentions_both_types (test_canonicalizer.TestSlicePlanAlignment.test_ambiguous_warn_failure_reason_mentions_both_types) ... ok
+test_classification_happy_path_meeting_heading (test_canonicalizer.TestSlicePlanAlignment.test_classification_happy_path_meeting_heading) ... ok
+test_determinism_three_runs (test_canonicalizer.TestSlicePlanAlignment.test_determinism_three_runs) ... ok
+test_fail_empty_file (test_canonicalizer.TestSlicePlanAlignment.test_fail_empty_file) ... ok
+test_fail_has_no_manifest_key (test_canonicalizer.TestSlicePlanAlignment.test_fail_has_no_manifest_key) ... ok
+test_fail_response_has_exactly_two_fields (test_canonicalizer.TestSlicePlanAlignment.test_fail_response_has_exactly_two_fields) ... ok
+test_pass_check_result_in_manifest (test_canonicalizer.TestSlicePlanAlignment.test_pass_check_result_in_manifest) ... ok
+test_pass_doc_id_uses_underscore_separator (test_canonicalizer.TestSlicePlanAlignment.test_pass_doc_id_uses_underscore_separator) ... ok
+test_pass_has_canonical_name (test_canonicalizer.TestSlicePlanAlignment.test_pass_has_canonical_name) ... ok
+test_pass_manifest_has_exactly_five_fields (test_canonicalizer.TestSlicePlanAlignment.test_pass_manifest_has_exactly_five_fields) ... ok
+test_pass_meeting_with_clear_date (test_canonicalizer.TestSlicePlanAlignment.test_pass_meeting_with_clear_date) ... ok
+test_pass_report_with_prose_date (test_canonicalizer.TestSlicePlanAlignment.test_pass_report_with_prose_date) ... ok
+test_short_agenda_key_field_is_not_a_date (test_canonicalizer.TestSlicePlanAlignment.test_short_agenda_key_field_is_not_a_date) ... ok
+test_warn_missing_date_uses_today_as_fallback (test_canonicalizer.TestSlicePlanAlignment.test_warn_missing_date_uses_today_as_fallback) ... ok
+test_warn_resolution_trail_field_format (test_canonicalizer.TestSlicePlanAlignment.test_warn_resolution_trail_field_format) ... ok
+test_warn_reviewed_by_is_null_initially (test_canonicalizer.TestSlicePlanAlignment.test_warn_reviewed_by_is_null_initially) ... ok
+test_warn_ambiguous_doc_type (test_canonicalizer.TestWarn.test_warn_ambiguous_doc_type) ... ok
+test_warn_includes_both_reasons_when_date_and_key_missing (test_canonicalizer.TestWarn.test_warn_includes_both_reasons_when_date_and_key_missing) ... ok
+test_warn_when_date_missing (test_canonicalizer.TestWarn.test_warn_when_date_missing) ... ok
+test_warn_when_key_field_missing (test_canonicalizer.TestWarn.test_warn_when_key_field_missing) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.002s
+Ran 46 tests in 0.005s
 
 OK
 
